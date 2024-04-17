@@ -8,24 +8,24 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import array.ListaArray;
-import list.EstruturaElementar;
+import estruturaDeDados.EstruradeDadosBuild;
+import estruturaDeDados.Lista;
 
-public class AppTest {
+public class ListaTest {
 
-    private EstruturaElementar e;
+    private Lista e;
 
     @Before
     public void setUp() throws Exception {
-        e = new ListaArray();
+        e = EstruradeDadosBuild.buildLista();
     }
 
     @Test
     public void testInsereInicio() {
         e.insereInicio(0);
-        assertEquals("Não é o primeiro " + 0, e.buscaIndice(0), 0);
+        assertEquals(e.buscaIndice(0), 0);
         e.insereInicio(1);
-        assertEquals("Não é o primeiro " + 1, e.buscaIndice(0), 1);
+        assertEquals(e.buscaIndice(0), 1);
         e.insereInicio(2);
         assertEquals("Não é o primeiro " + 2, e.buscaIndice(0), 2);
         e.insereInicio(3);
@@ -56,43 +56,6 @@ public class AppTest {
 
         assertFalse("Encontrado " + 5, e.buscaElemento(5));
         assertFalse("Encontrado " + -1, e.buscaElemento(-1));
-    }
-
-    @Test
-    public void testInsere() {
-        assertFalse("Encontrado " + -1, e.buscaElemento(-1));
-        e.insereElemento(0);
-        e.insereElemento(1);
-        e.insereElemento(2);
-        e.insereElemento(3);
-        assertTrue("Não encontrado " + 0, e.buscaElemento(0));
-        assertTrue("Não encontrado " + 1, e.buscaElemento(1));
-        assertTrue("Não encontrado " + 2, e.buscaElemento(2));
-        assertTrue("Não encontrado " + 3, e.buscaElemento(3));
-
-        assertFalse("Encontrado " + 5, e.buscaElemento(5));
-        assertFalse("Encontrado " + -1, e.buscaElemento(-1));
-    }
-
-    @Test
-    public void testRemove() {
-        e.insereElemento(0);
-        e.insereElemento(1);
-        e.insereElemento(2);
-        e.insereElemento(3);
-        assertTrue("Não encontrado " + 0, e.buscaElemento(0));
-        assertTrue("Não encontrado " + 1, e.buscaElemento(1));
-        assertTrue("Não encontrado " + 2, e.buscaElemento(2));
-        assertTrue("Não encontrado " + 3, e.buscaElemento(3));
-
-        e.remove(3);
-        e.remove(5);
-        e.remove(-1);
-        assertFalse("Encontrado " + 3, e.buscaElemento(3));
-        assertFalse("Encontrado " + 5, e.buscaElemento(5));
-        assertFalse("Encontrado " + -1, e.buscaElemento(-1));
-        e.remove(3);
-        assertFalse("Encontrado " + 3, e.buscaElemento(3));
     }
 
     @Test
@@ -135,19 +98,5 @@ public class AppTest {
         e.removeIndice(0);
         assertFalse(e.buscaElemento(5));
         assertEquals(3, e.buscaIndice(0));
-    }
-
-    @Test
-    public void testMaxMin() {
-        e.insereInicio(0);
-        e.insereInicio(1);
-        e.insereInicio(2);
-        e.insereInicio(3);
-        assertEquals(3, e.maximo());
-        assertEquals(0, e.minimo());
-        e.insereElemento(10);
-        e.insereElemento(-10);
-        assertEquals(10, e.maximo());
-        assertEquals(-10, e.minimo());
     }
 }
